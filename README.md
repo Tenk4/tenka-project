@@ -1,9 +1,9 @@
 # Tenka-project
 
 ## วิธีติดตั้ง
-แตกไฟล์ลงบนโฟลเดอร์ server
-ดาวน์โหลด include และ plugin ด้านล่าง
-มัดรวมกันแล้วยัดเข้าไปในโฟลเดอร์เลย
+แตกไฟล์ลงบนโฟลเดอร์ server\
+ดาวน์โหลด include และ plugin ด้านล่าง\
+มัดรวมกันแล้วยัดเข้าไปในโฟลเดอร์เลย\
 
 ## Includes & Plugins
 https://github.com/pBlueG/SA-MP-MySQL/releases
