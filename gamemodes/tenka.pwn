@@ -1416,8 +1416,11 @@ public OnPlayerConnect(playerid)
 
 public OnPlayerDisconnect(playerid, reason)
 {
-	if (playerData[playerid][pSpeedoTimer])
+	if (playerData[playerid][pSpeedoTimer] != -1)
+	{
 	    KillTimer(playerData[playerid][pSpeedoTimer]);
+	    playerData[playerid][pSpeedoTimer] = -1;
+	}
 	    
     for (new i = 0; i <= 9; i++)
     {
@@ -2197,8 +2200,11 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 		}
 		else
 		{
-			if (playerData[playerid][pSpeedoTimer])
+			if (playerData[playerid][pSpeedoTimer] != -1)
+			{
 			    KillTimer(playerData[playerid][pSpeedoTimer]);
+			    playerData[playerid][pSpeedoTimer] = -1;
+			}
 			    
 			switch(GetEngineStatus(vehicleid))
 			{
@@ -2211,8 +2217,11 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	else
 	{
 	    ShowPlayerSpeedo(playerid, false);
-		if (playerData[playerid][pSpeedoTimer])
+		if (playerData[playerid][pSpeedoTimer] != -1)
+		{
 		    KillTimer(playerData[playerid][pSpeedoTimer]);
+		    playerData[playerid][pSpeedoTimer] = -1;
+		}
 	}
 	return 1;
 }
