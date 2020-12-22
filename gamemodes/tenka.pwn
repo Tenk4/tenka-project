@@ -1416,6 +1416,9 @@ public OnPlayerConnect(playerid)
 
 public OnPlayerDisconnect(playerid, reason)
 {
+	if (playerData[playerid][pSpeedoTimer])
+	    KillTimer(playerData[playerid][pSpeedoTimer]);
+	    
     for (new i = 0; i <= 9; i++)
     {
         RemovePlayerAttachedObject(playerid, i);
@@ -2194,18 +2197,22 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 		}
 		else
 		{
+			if (playerData[playerid][pSpeedoTimer])
+			    KillTimer(playerData[playerid][pSpeedoTimer]);
+			    
 			switch(GetEngineStatus(vehicleid))
 			{
 				case false: SendClientMessage(playerid, COLOR_LIGHTRED, "[คำเตือน] {FFFFFF}กดปุ่ม N เพื่อสตาร์ทเครื่องยนต์");
 			}
 			ShowPlayerSpeedo(playerid, true);
-			playerData[playerid][pSpeedoTimer] = SetTimerEx("SpeedoTimer", 100, true, "ddd", playerid, id, vehicleid);
+			playerData[playerid][pSpeedoTimer] = SetTimerEx("SpeedoTimer", 250, true, "ddd", playerid, id, vehicleid);
 		}
 	}
 	else
 	{
 	    ShowPlayerSpeedo(playerid, false);
-	    KillTimer(playerData[playerid][pSpeedoTimer]);
+		if (playerData[playerid][pSpeedoTimer])
+		    KillTimer(playerData[playerid][pSpeedoTimer]);
 	}
 	return 1;
 }
@@ -2366,6 +2373,8 @@ ResetPlayerConnection(playerid)
 	playerData[playerid][pCarSeller] = INVALID_PLAYER_ID;
 	playerData[playerid][pCarOffered] = -1;
 	playerData[playerid][pCarValue] = 0;
+	
+	playerData[playerid][pSpeedoTimer] = -1;
 
 	playerData[playerid][pMaxItem] = 8;
 	playerData[playerid][pItemAmount] = 20;
